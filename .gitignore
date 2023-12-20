@@ -1,2 +1,5 @@
-./Data/
-.news_analyzer2.db
+# Ignorar el directorio data
+data/
+
+# Ignorar el archivo news_analyzer2.db
+news_analyzer2.db
