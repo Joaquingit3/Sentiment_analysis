@@ -1,6 +1,9 @@
 import pandas as pd
 
+
+# Clase para dar formato a datos OHLCV (Open High Low Close Volume)
 class OHLCVFormatter:
+    # Metodo format, para dar el formato correcto al df
     def format(self, df):
         # Limpiamos los NA
         df = df.dropna()
@@ -12,7 +15,7 @@ class OHLCVFormatter:
         # Cambiamos el tipo a la columna 'datetime' por datetime
         df["datetime"] = pd.to_datetime(df["datetime"])
 
-        # Ajustamos las horas a '00:00:00'
+        # Ajustamos datetime para no tener días
         df["datetime"] = df["datetime"].dt.floor("D")
 
         # Asignamos como indice del df la columna 'datetime'

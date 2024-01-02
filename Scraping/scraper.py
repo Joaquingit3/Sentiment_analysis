@@ -12,7 +12,7 @@ logging.basicConfig(
     level=logging.WARNING
 )
 
-
+# Verión anterior de la función run_spyder para el scrapeo con scrapy
 def run_spyder():
     # Definir el objeto process, para tener solo errores
     # process = CrawlerProcess(get_project_settings())

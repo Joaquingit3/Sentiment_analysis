@@ -1,11 +1,11 @@
-import re
-import numpy as np
+# import re
+# import numpy as np
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 
 # Importar las clases articulo y Plotter
-from Plotter import Plotter
+# from Plotter import Plotter
 
 # Importar nuestros lectores
 from Readers.SQLiteReader import SQLiteReader
@@ -17,7 +17,7 @@ from Formatters.ArticleFormatter import ArticleFormatter
 
 from scrapy.crawler import CrawlerProcess
 from Scraping.scraper.spiders.spiders_sitemap import MySpyder
-from Scraping.scraper.settings import ITEM_PIPELINES, USER_AGENT_LIST
+from Scraping.scraper.settings import ITEM_PIPELINES
 
 import logging
 from scrapy.utils.log import configure_logging
@@ -28,6 +28,7 @@ pd.set_option('display.max_rows', None)    # Para mostrar todas las filas de un 
 
 
 '''
+--- Versión Inicial del main ------------
 def main():
    # Leer el archivo de BTC
    path_ohlcv = "data/BTCUSD.csv"
@@ -47,6 +48,7 @@ def main():
    Plotter.plot_candlestick_and_articles(df, articles)
 '''
 
+# ------------------------ Scrapy configuracion y main ----------------
 # Configuración de logging
 configure_logging(install_root_handler=False)
 logging.basicConfig(
@@ -59,9 +61,8 @@ logging.basicConfig(
 # Generamos un main nuevo para probar el scraper
 def run_spider():
     process = CrawlerProcess(settings={
-        #'LOG_LEVEL': 'ERROR',
+        'LOG_LEVEL': 'ERROR',
         'ITEM_PIPELINES': ITEM_PIPELINES,
-        'USER_AGENT_LIST': USER_AGENT_LIST,
     })
     # Generar el crawler con la info de la clase MySpyder
     process.crawl(MySpyder)
@@ -77,6 +78,7 @@ def main_news():
     run_spider()
 
 
+# ------------------------ Representacion de la base de datos y cotizcion ----------------
 def main_represent():
     # Leemos los datos de cotización y los guardamos en un df
     path_ohlcv = "data/BTCUSD.csv"
@@ -135,7 +137,7 @@ def main_represent():
     plt.show()
 
 
-# Run the script.
+# Run the scripts
 if __name__ == '__main__':
     # Opcciones de ejecución
     recolect_news = False

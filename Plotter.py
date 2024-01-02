@@ -3,6 +3,8 @@ import plotly.graph_objs as go
 from plotly.subplots import make_subplots
 
 
+# Clase que realiza un gráfico de velas para la cotización y un gráfico scatter
+# en la fecha de cada noticia y con un tamaño dependiendo del sentimiento
 class Plotter:
     def plot_candlestick_and_articles(candlesticks, articles):
         # Generar subplots

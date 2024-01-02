@@ -6,7 +6,8 @@ from Models.Article import Article
 
 
 '''
-# Para pasar de una abreviatura de fecha a numero
+ ------------------------ Funciones propias para formatear Articles ----------------
+# Funcion para convertir una abreviatura de fecha a numero
 def convert_month_to_number(text):
     # Checkear el texto
     if text == 'Jan':
@@ -62,7 +63,7 @@ def convert_month_to_number(text):
         return None
 
 
-# Dar formato de fecha a la columna de noticias
+# Función para dar formato de fecha a la columna de noticias
 def format_date(date):
     # Separamos el string fecha por espacio en blanco
     aux = date.split(' ')
@@ -110,6 +111,7 @@ def format_date(date):
                     hour=hour, minute=minutes, tzinfo=timezone.utc)
 '''
 
+# Clase definitiva para formatear las noticias de la base de datos
 class ArticleFormatter:
     # Dar formato de fecha
     def format_date(date_str):
@@ -137,6 +139,7 @@ class ArticleFormatter:
 
         return row_convert
 
+    # Metodo general para formatear los datos de la bbdd
     def format(self, data):
         # Loop a las filas de data
         data_formated = []
@@ -149,6 +152,7 @@ class ArticleFormatter:
         # Return de la info formateada
         return data_formated
 
+    # Metodo para convertir una lista en un Dataframe
     def ListToDF(self, data):
         articles = []
 
@@ -168,6 +172,7 @@ class ArticleFormatter:
 
         return df
 
+    # Metodo para seleccionar solo las noticias en ingles, ya que vader está pensado para el lenguaje inglés
     def only_englishnews(self, df):
         # Creamos una columna binaria si es una noticia española
         df['spanish_new'] = df['url'].apply(lambda x: bool(re.search('/es/', x)))
@@ -181,6 +186,7 @@ class ArticleFormatter:
 
         return df_final
 
+    # Metodo para agrupar el DF por un periodo temporar sumando los valores
     def ResampleDF(self, df, timeframe):
         # Creamos la agrupación por suma de sentimiento
         df = df.resample(timeframe).sum()

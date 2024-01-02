@@ -1,7 +1,7 @@
 import datetime
 
 
-# Creamos clase article castando sus parametros para que solo se permitan si son de este tipo
+# Clase Article casteando el formato de sus parámetros
 class Article:
     # Función constructora
     def __init__(self,
@@ -20,6 +20,7 @@ class Article:
         self.content = content
         self.sentiment = sentiment
     '''
+    -------------------- Version anterior de la función constructora --------------------------
     def __init__(self,
                  url: str,
                  title: str,
